@@ -1,604 +1,645 @@
 <!DOCTYPE html>
-<!--
-	Dimension by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-  <head>
-    <title>Mohammad Sameer Portfolio</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript
-      ><link rel="stylesheet" href="assets/css/noscript.css"
-    /></noscript>
-  </head>
-  <body class="is-preload">
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <!-- Header -->
-      <header id="header">
-        <div class="logo">
-          <span class="icon fa-gem"></span>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00ff9f;
+            --secondary: #00b8ff;
+            --accent: #ff0055;
+            --dark: #0a0a0f;
+            --light: #e0ffe0;
+            --gradient: linear-gradient(120deg, #00ff9f, #00b8ff);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 159, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 50%, rgba(0, 184, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 30% 80%, rgba(255, 0, 85, 0.1) 0%, transparent 20%);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 120px 10% 4rem;
+            display: none;
+            animation: glitchIn 0.5s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes glitchIn {
+            0% { 
+                opacity: 0; 
+                transform: translateY(20px); 
+                clip-path: inset(0 0 100% 0);
+            }
+            50% {
+                clip-path: inset(0 0 50% 0);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0);
+                clip-path: inset(0 0 0 0);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.95);
+            padding: 1.5rem 10%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 159, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 159, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            left: 0;
+        }
+
+        /* Content Sections */
+        .home-content,
+        .experience-timeline,
+        .projects-grid,
+        .contact-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            margin-bottom: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 1rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(0, 255, 159, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-item i {
+            color: var(--primary);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            padding: 2rem 0;
+        }
+
+        .project-card {
+            background: rgba(10, 10, 15, 0.8);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 159, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 255, 159, 0.3);
+        }
+
+        .project-image {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .project-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .project-tag {
+            background: var(--gradient);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            font-weight: bold;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 10, 15, 0.9) !important;
+            border: 2px solid var(--primary) !important;
+            color: var(--light) !important;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--gradient);
+            border: none;
+            border-radius: 8px;
+            color: var(--dark);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Glitch Effect */
+        h1::before, h2::before, h3::before {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            text-shadow: 2px 0 var(--accent);
+            top: 0;
+            color: var(--primary);
+            background: var(--dark);
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-effect 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-effect {
+            0% {
+                clip: rect(44px, 9999px, 56px, 0);
+            }
+            20% {
+                clip: rect(12px, 9999px, 78px, 0);
+            }
+            40% {
+                clip: rect(89px, 9999px, 23px, 0);
+            }
+            60% {
+                clip: rect(67px, 9999px, 34px, 0);
+            }
+            80% {
+                clip: rect(90px, 9999px, 12px, 0);
+            }
+            100% {
+                clip: rect(45px, 9999px, 67px, 0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page {
+                padding: 100px 5% 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Education Section Styles */
+        .education-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            background: rgba(10, 10, 15, 0.8);
+        }
+
+        .education-item h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .university {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .location {
+            color: var(--light);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item .courses {
+            margin-top: 1rem;
+            line-height: 1.6;
+        }
+
+        .education-item .duration {
+            color: var(--accent);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">PORTFOLIO</div>
+        <div class="nav-links">
+            <a onclick="showPage('home')" class="active">Home</a>
+            <a onclick="showPage('education')">Education</a>
+            <a onclick="showPage('experience')">Experience</a>
+            <a onclick="showPage('projects')">Projects</a>
+            <a onclick="showPage('contact')">Contact</a>
         </div>
-        <div class="content">
-          <div class="inner">
-            <h1>My Portfolio</h1>
-            <h2></h2>
-            <p>
-              <font size="4"
-                >Hello! I'm <b>Mohammad Sameer</b>, a graduate student pursuing
-                computer science at
-                <a href="https://www.udayton.edu" target="_blank"
-                  ><b>University of Dayton</b></a
-                >
-                , I'm a highly skilled and motivated Data Engineer with a proven
-                track record of designing and implementing robust data pipelines
-                and solutions at IBM. Possessing a strong foundation in data
-                architecture, ETL processes, and database management/SQL, python
-                automation, seeking internship opportunities for the role of
-                software developer.</font
-              >
-            </p>
-          </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="home-content">
+            <div class="profile-section">
+                <h1 data-text="Mohammad Sameer">Mohammad Sameer</h1>
+                <h2 data-text="Software Engineer">Software Engineer</h2>
+                <p>Dynamic and results-driven Data Engineer with extensive experience designing, developing, and maintaining scalable, secure data warehousing solutions. Demonstrated expertise in processing petabytes of data daily, optimizing data pipelines, and leading teams to deliver robust data infrastructure for global clients such as Hyundai and Kia. Proficient in creating custom Python platforms for data transfer and implementing advanced solutions for data extraction, transformation, and analysis.</p>
+            </div>
+            <div class="skills-section">
+                <div class="skill-category">
+                    <h3 data-text="Languages"><i class="fas fa-code"></i>Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fab fa-python"></i>Python</span>
+                        <span class="skill-item"><i class="fab fa-js"></i>JavaScript</span>
+                        <span class="skill-item"><i class="fab fa-java"></i>Java</span>
+                        <span class="skill-item"><i class="fab fa-golang"></i>Go</span>
+                        <span class="skill-item"><i class="fas fa-calculator"></i>MATLAB</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-text="Frameworks & Libraries"><i class="fas fa-layer-group"></i>Frameworks & Libraries</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fab fa-react"></i>React</span>
+                        <span class="skill-item"><i class="fab fa-node-js"></i>Node.js</span>
+                        <span class="skill-item"><i class="fab fa-node"></i>Express</span>
+                        <span class="skill-item"><i class="fab fa-react"></i>Next.js</span>
+                        <span class="skill-item"><i class="fas fa-bolt"></i>FastAPI</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-text="Databases"><i class="fas fa-database"></i>Databases</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fas fa-database"></i>MongoDB</span>
+                        <span class="skill-item"><i class="fas fa-database"></i>PostgreSQL</span>
+                        <span class="skill-item"><i class="fas fa-database"></i>MySQL</span>
+                        <span class="skill-item"><i class="fas fa-snowflake"></i>Snowflake</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-text="Cloud & DevOps"><i class="fas fa-cloud"></i>Cloud & DevOps</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fab fa-aws"></i>AWS</span>
+                        <span class="skill-item"><i class="fab fa-docker"></i>Docker</span>
+                        <span class="skill-item"><i class="fab fa-git"></i>Git</span>
+                        <span class="skill-item"><i class="fab fa-jenkins"></i>Jenkins</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <nav>
-          <ul>
-            <li><a href="#intro">About me</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#about">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <!--<li><a href="#elements">Elements</a></li>-->
-          </ul>
-        </nav>
-      </header>
-
-      <!-- Main -->
-      <div id="main">
-        <!-- Intro -->
-        <article id="intro">
-          <h2 class="major">Intro</h2>
-          <span class="image main"><img src="images/UD.jpg" alt="" /></span>
-          <p>
-            Currently I'm working as a part-time Biographical Data Management
-            Assistant at the University of Dayton Advancement which includes
-            responsibilities such as Data research and verification, Document
-            imaging, Correspondence distribution in the areas of business and
-            non-profit management. All the data is managed using Salesforce!
-          </p>
-          <p>Here is a list of technologies that I'm familiar with!</p>
-          <ul class="about__SkillsContainer-sc-10e07bc-3 ZXYSw">
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">Python</li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">SQL(DBMS)</li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-              ETL/Data Warehousing
-            </li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">UNIX</li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">JavaScript</li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-              Informatica Powercentre
-            </li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-              Salesforce-Affina Quest
-            </li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-              Control-M Workload Automation
-            </li>
-            <li class="about__Skill-sc-10e07bc-4 hNIbjN">Oracle/SQL Server</li>
-          </ul>
-          <h3>Certifications:</h3>
-          <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-            IBM Certified Informatica Developer
-          </li>
-          <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-            IBM Certified Salesforce Developer
-          </li>
-          <li class="about__Skill-sc-10e07bc-4 hNIbjN">
-            Python for Data Science IBM
-          </li>
-          <br />
-          <p>Check out my professional<a href="#work"> experience!</a></p>
-        </article>
-
-        <!-- Work -->
-        <article id="work">
-          <h2 class="major">Work</h2>
-          <h3>Data Engineer - IBM</h3>
-          <span class="image main"
-            ><img src="images/IBM1.jpg" alt="" width="700" height="300"
-          /></span>
-          <p>
-            Functioned as a data engineer for highly demanding account of
-            <a href="https://www.haeaus.com/" target="_blank"
-              >Hyundai Autoever America & Kia Motors </a
-            >, responsible for designing, maintaining, and optimizing the data
-            warehousing architecture, processing petabytes of data daily.
-          </p>
-          <p>
-            Functioned as Python Developer to implement and enhance the in-house
-            python IDTP (Inbound Data Transfer Platform) & ODTP (Outbound Data
-            Transfer Platform) utilities used to automate data transfer to and
-            from vendor source systems to our data warehouse and vice versa.
-            Improving processing and development of SCD Type 1 data requests by
-            67%.
-          </p>
-          <p>
-            Spearheaded Batch Monitoring team as the team lead with a team size
-            of around 15 people, improved average incident resolution time from
-            67 minutes down to 43 minutes. Handled team management tasks.
-            Created weekly shift rosters, onboarded new resources, created
-            schedule for knowledge transfer for the new hires and integrated
-            them into the batch monitoring team within 2 weeks.
-          </p>
-          <p>
-            Created complex SQL queries, stored procedures, scripts and
-            integrated with informatica and python to perform data integration
-            and transformation.
-          </p>
-          <p>Check out my <a href="#about">projects!</a></p>
-        </article>
-
-        <!-- About -->
-        <article id="about">
-          <h2 class="major">Projects</h2>
-          <span class="image main"
-            ><img src="images/vc.jpg" alt="" height="250"
-          /></span>
-          <p><b>Title:</b> Voice Controlled Database Analysis</p>
-          <p><b>Technologies Used:</b> Java, HTML, JDBC, Stanford CoreNLP</p>
-          <p>
-            Developed a voice-controlled database analysis system that leverages
-            Natural Language Processing (NLP) and the Google Speech-to-Text API,
-            with the aim of enhancing data query and retrieval processes for
-            users through seamless voice commands and spoken language
-            understanding.
-          </p>
-          <p><a href="#contact">Get in touch ?</a></p>
-        </article>
-
-        <!-- Contact -->
-        <article id="contact">
-          <h2 class="major">Contact</h2>
-          <!-- <form method="post" action="#">
-            <div class="fields">
-              <div class="field half">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" />
-              </div>
-              <div class="field half">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" />
-              </div>
-              <div class="field">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="4"></textarea>
-              </div>
-            </div>
-            <ul class="actions">
-              <li>
-                <input type="submit" value="Send Message" class="primary" />
-              </li>
-              <li><input type="reset" value="Reset" /></li>
-            </ul>
-          </form> -->
-          <ul class="icons">
-            <!-- <li>
-              <a href="#" class="icon brands fa-twitter"
-                ><span class="label">Twitter</span></a
-              >
-            </li> -->
-            <section
-              id="contact"
-              class="Section-sc-11s1stw-0 contact__StyledContainer-sc-sehid-0 eyxjBQ gUsVuV"
-              data-sr-id="15"
-              style="
-                visibility: visible;
-                opacity: 1;
-                transform: matrix3d(
-                  1,
-                  0,
-                  0,
-                  0,
-                  0,
-                  1,
-                  0,
-                  0,
-                  0,
-                  0,
-                  1,
-                  0,
-                  0,
-                  0,
-                  0,
-                  1
-                );
-                transition: opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1)
-                    0.2s,
-                  transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s;
-              "
-            >
-              <h3
-                class="Heading-sc-16ftyqo-0 contact__StyledHeading-sc-sehid-1 gRQVKa LvYcK"
-              >
-                What's Next?
-              </h3>
-              <h4 class="contact__StyledTitle-sc-sehid-2 iLuYaS">
-                Get In Touch
-              </h4>
-              <div>
-                <p>
-                  My inbox is always open. Whether you have a question or just
-                  want to say hello, I'll try my best to get back to you! Feel
-                  free to mail me about any relevant job updates.
-                </p>
-              </div>
-              <a
-                href="mailto:mohammadsameer7163@gmail.com"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                class="contact__StyledEmailLink-sc-sehid-3 dXyrwW"
-                >Mail Me</a
-              >
-            </section>
-            <li>
-              <p></p>
-              <a
-                href="https://www.instagram.com/m_sameerr/"
-                class="icon brands fa-instagram"
-                target="_blank"
-                ><span class="label">Instagram</span></a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/mohammad--sameer"
-                class="icon brands fa-linkedin"
-                target="_blank"
-                ><span class="label">Linkedin</span></a
-              >
-            </li>
-            <li>
-              <a
-                href="https://github.com/Sameer7163/projects"
-                class="icon brands fa-github"
-                target="_blank"
-                ><span class="label">GitHub</span></a
-              >
-            </li>
-          </ul>
-        </article>
-
-        <!-- Elements -->
-        <article id="elements">
-          <h2 class="major">Elements</h2>
-
-          <section>
-            <h3 class="major">Text</h3>
-            <p>
-              This is <b>bold</b> and this is <strong>strong</strong>. This is
-              <i>italic</i> and this is <em>emphasized</em>. This is
-              <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-              This is <u>underlined</u> and this is code:
-              <code>for (;;) { ... }</code>. Finally,
-              <a href="#">this is a link</a>.
-            </p>
-            <hr />
-            <h2>Heading Level 2</h2>
-            <h3>Heading Level 3</h3>
-            <h4>Heading Level 4</h4>
-            <h5>Heading Level 5</h5>
-            <h6>Heading Level 6</h6>
-            <hr />
-            <h4>Blockquote</h4>
-            <blockquote>
-              Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis
-              sagittis eget tempus euismod. Vestibulum ante ipsum primis in
-              faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat
-              ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in
-              faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.
-            </blockquote>
-            <h4>Preformatted</h4>
-            <pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-          </section>
-
-          <section>
-            <h3 class="major">Lists</h3>
-
-            <h4>Unordered</h4>
-            <ul>
-              <li>Dolor pulvinar etiam.</li>
-              <li>Sagittis adipiscing.</li>
-              <li>Felis enim feugiat.</li>
-            </ul>
-
-            <h4>Alternate</h4>
-            <ul class="alt">
-              <li>Dolor pulvinar etiam.</li>
-              <li>Sagittis adipiscing.</li>
-              <li>Felis enim feugiat.</li>
-            </ul>
-
-            <h4>Ordered</h4>
-            <ol>
-              <li>Dolor pulvinar etiam.</li>
-              <li>Etiam vel felis viverra.</li>
-              <li>Felis enim feugiat.</li>
-              <li>Dolor pulvinar etiam.</li>
-              <li>Etiam vel felis lorem.</li>
-              <li>Felis enim et feugiat.</li>
-            </ol>
-            <h4>Icons</h4>
-            <ul class="icons">
-              <li>
-                <a href="#" class="icon brands fa-twitter"
-                  ><span class="label">Twitter</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-facebook-f"
-                  ><span class="label">Facebook</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-instagram"
-                  ><span class="label">Instagram</span></a
-                >
-              </li>
-              <li>
-                <a href="#" class="icon brands fa-github"
-                  ><span class="label">Github</span></a
-                >
-              </li>
-            </ul>
-
-            <h4>Actions</h4>
-            <ul class="actions">
-              <li><a href="#" class="button primary">Default</a></li>
-              <li><a href="#" class="button">Default</a></li>
-            </ul>
-            <ul class="actions stacked">
-              <li><a href="#" class="button primary">Default</a></li>
-              <li><a href="#" class="button">Default</a></li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 class="major">Table</h3>
-            <h4>Default</h4>
-            <div class="table-wrapper">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Item One</td>
-                    <td>Ante turpis integer aliquet porttitor.</td>
-                    <td>29.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Two</td>
-                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                    <td>19.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Three</td>
-                    <td>Morbi faucibus arcu accumsan lorem.</td>
-                    <td>29.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Four</td>
-                    <td>Vitae integer tempus condimentum.</td>
-                    <td>19.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Five</td>
-                    <td>Ante turpis integer aliquet porttitor.</td>
-                    <td>29.99</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="2"></td>
-                    <td>100.00</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-
-            <h4>Alternate</h4>
-            <div class="table-wrapper">
-              <table class="alt">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Item One</td>
-                    <td>Ante turpis integer aliquet porttitor.</td>
-                    <td>29.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Two</td>
-                    <td>Vis ac commodo adipiscing arcu aliquet.</td>
-                    <td>19.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Three</td>
-                    <td>Morbi faucibus arcu accumsan lorem.</td>
-                    <td>29.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Four</td>
-                    <td>Vitae integer tempus condimentum.</td>
-                    <td>19.99</td>
-                  </tr>
-                  <tr>
-                    <td>Item Five</td>
-                    <td>Ante turpis integer aliquet porttitor.</td>
-                    <td>29.99</td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="2"></td>
-                    <td>100.00</td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </section>
-
-          <section>
-            <h3 class="major">Buttons</h3>
-            <ul class="actions">
-              <li><a href="#" class="button primary">Primary</a></li>
-              <li><a href="#" class="button">Default</a></li>
-            </ul>
-            <ul class="actions">
-              <li><a href="#" class="button">Default</a></li>
-              <li><a href="#" class="button small">Small</a></li>
-            </ul>
-            <ul class="actions">
-              <li>
-                <a href="#" class="button primary icon solid fa-download"
-                  >Icon</a
-                >
-              </li>
-              <li>
-                <a href="#" class="button icon solid fa-download">Icon</a>
-              </li>
-            </ul>
-            <ul class="actions">
-              <li><span class="button primary disabled">Disabled</span></li>
-              <li><span class="button disabled">Disabled</span></li>
-            </ul>
-          </section>
-
-          <section>
-            <h3 class="major">Form</h3>
-            <form method="post" action="#">
-              <div class="fields">
-                <div class="field half">
-                  <label for="demo-name">Name</label>
-                  <input
-                    type="text"
-                    name="demo-name"
-                    id="demo-name"
-                    value=""
-                    placeholder="Jane Doe"
-                  />
-                </div>
-                <div class="field half">
-                  <label for="demo-email">Email</label>
-                  <input
-                    type="email"
-                    name="demo-email"
-                    id="demo-email"
-                    value=""
-                    placeholder="jane@untitled.tld"
-                  />
-                </div>
-                <div class="field">
-                  <label for="demo-category">Category</label>
-                  <select name="demo-category" id="demo-category">
-                    <option value="">-</option>
-                    <option value="1">Manufacturing</option>
-                    <option value="1">Shipping</option>
-                    <option value="1">Administration</option>
-                    <option value="1">Human Resources</option>
-                  </select>
-                </div>
-                <div class="field half">
-                  <input
-                    type="radio"
-                    id="demo-priority-low"
-                    name="demo-priority"
-                    checked
-                  />
-                  <label for="demo-priority-low">Low</label>
-                </div>
-                <div class="field half">
-                  <input
-                    type="radio"
-                    id="demo-priority-high"
-                    name="demo-priority"
-                  />
-                  <label for="demo-priority-high">High</label>
-                </div>
-                <div class="field half">
-                  <input type="checkbox" id="demo-copy" name="demo-copy" />
-                  <label for="demo-copy">Email me a copy</label>
-                </div>
-                <div class="field half">
-                  <input
-                    type="checkbox"
-                    id="demo-human"
-                    name="demo-human"
-                    checked
-                  />
-                  <label for="demo-human">Not a robot</label>
-                </div>
-                <div class="field">
-                  <label for="demo-message">Message</label>
-                  <textarea
-                    name="demo-message"
-                    id="demo-message"
-                    placeholder="Enter your message"
-                    rows="6"
-                  ></textarea>
-                </div>
-              </div>
-              <ul class="actions">
-                <li>
-                  <input type="submit" value="Send Message" class="primary" />
-                </li>
-                <li><input type="reset" value="Reset" /></li>
-              </ul>
-            </form>
-          </section>
-        </article>
-      </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <p class="copyright">
-          &copy;
-          <a href="mailto:mohammadsameer7163@gmail.com"
-            >mohammadsameer7163@gmail.com</a
-          >
-        </p>
-      </footer>
     </div>
 
-    <!-- BG -->
-    <div id="bg"></div>
+    <!-- Education Page -->
+    <div id="education" class="page">
+        <div class="education-timeline">
+            <div class="education-item">
+                <h3 data-text="University of Dayton">University of Dayton</h3>
+                <div class="university">Master of Science: Computer Science</div>
+                <div class="location">Dayton, OH</div>
+                <div class="duration">Aug 2023 - May 2025</div>
+                <div class="gpa">GPA: 3.9/4.0</div>
+                <div class="courses">
+                    <strong>Key Courses:</strong> Advanced Data Structures & Algorithms, Artificial Intelligence, Advanced Deep Learning, Secure Application Development, Data Science & Pattern Recognition, Security & Safety in Autonomous Systems
+                </div>
+            </div>
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-  </body>
-</html>
+            <div class="education-item">
+                <h3 data-text="Savitribai Phule Pune University">Savitribai Phule Pune University</h3>
+                <div class="university">Bachelor of Engineering: Computer Engineering</div>
+                <div class="location">Pune, India</div>
+                <div class="duration">Aug 2015 - Jul 2019</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Page -->
+    <div id="experience" class="page">
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <h3 data-text="Data IT Intern">Data IT Intern</h3>
+                <div class="company">Great American Insurance Group</div>
+                <div class="duration">May 2024 - Dec 2024</div>
+                <br><br>
+                <ul>
+                    <li>Automated data validation for new business user's policies claim validation using custom python script reducing data analysis time by 67%.</li>
+                    <li>Developed custom python UDFs in Snowflake to perform data validation and data quality checks.</li>
+                    <li>Successfully performed data migration, analysis, reporting from legacy SQL Server DB to Snowflake Cloud for over 4000 tables from 13 schemas using Informatica Cloud DV tool.</li>
+                    <li>Developed a custom VBA script to efficiently aggregate User Stories and Defects data, enabling real-time performance tracking across sprints for the given fiscal year.</li>
+                </ul>
+            </div>
+
+            <br><br>
+
+            <div class="experience-item">
+                <h3 data-text="Software Engineer">Software Engineer: Data</h3>
+                <div class="company">IBM</div>
+                <div class="duration">February 2020 - June 2023</div>
+                <br><br>
+                <ul>
+                    <li>Developed and deployed FastAPI-based microservices and RESTful APIs for Hyundai's site systems, supporting 10,000+ concurrent users with zero downtime.</li>
+                    <li>Engineered and maintained scalable, secure data systems for processing petabytes of data daily, ensuring compliance with security best practices, contributing to the efficiency of propulsion engineering data systems.</li>
+                    <li>Optimized SQL queries and database architecture, reducing query time by 40% and improving data retrieval efficiency for applications handling 10 million daily transactions from over 40 source systems.</li>
+                    <li>Created and optimized over 1000 data pipelines, ETL workflows, and mappings using Informatica PowerCenter and SQL, improving data processing speed by 10-37%, with a focus on secure handling of sensitive data.</li>
+                    <li>Conducted analysis, debugging, and manipulation of complex datasets in Oracle, Microsoft SQL Server, IBM DB2, and SAP databases, ensuring secure and efficient data processing.</li>
+                    <li>Built complex SQL queries, stored procedures, scripts, integrating them with Informatica and Python for seamless data integration and transformation, reducing query execution time by 60% for Customer VIN Analytics & MDM.</li>
+                    <li>Led a 15-member Batch Monitoring team, optimizing incident resolution times and overseeing the secure migration of scheduling tasks from Control-M to Airflow for over 400 workflows.</li>
+                </ul>
+            </div>
+
+            <br><br>
+
+            <div class="experience-item">
+                <h3 data-text="Graduate Teaching Assistant">Graduate Teaching Assistant</h3>
+                <div class="company">University of Dayton</div>
+                <div class="duration">August 2024 - Present</div>
+                <br><br>
+                <ul>
+                    <li>Taught MATLAB programming for 80+ Mechanical and Aerospace Engineering students</li>
+                    <li>Organized help sessions and graded assignments</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Page -->
+    <div id="projects" class="page">
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-shopping-cart fa-3x"></i>
+                </div>
+                <div class="project-info">
+                    <h3 data-text="Multivendor Ecommerce">Multivendor Ecommerce</h3>
+                    <p>Full-stack ecommerce platform with authentication, product catalog, Stripe checkout, and live chat.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React.js</span>
+                        <span class="project-tag">Express.js</span>
+                        <span class="project-tag">MongoDB</span>
+                    </div>
+                    <br><br>
+                    <div class="project-links">
+                        <a href="https://github.com/Sameer7163/Multi-commerce-backend.git" target="_blank" class="code-link" style="color: var(--primary)">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-robot fa-3x"></i>
+                </div>
+                <div class="project-info">
+                    <h3 data-text="OpenAI Integration">OpenAI Integration</h3>
+                    <p>NextJS app with OpenAI integration for itinerary and tour planning suggestions.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">NextJS</span>
+                        <span class="project-tag">OpenAI</span>
+                        <span class="project-tag">Prisma</span>
+                    </div>
+                    <br><br>
+                    <div class="project-links">
+                        <a href="https://github.com/Sameer7163/GPTGenius.git" target="_blank" class="code-link" style="color: var(--primary)">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-tasks fa-3x"></i>
+                </div>
+                <div class="project-info">
+                    <h3 data-text="Job Tracking App">Job Tracking App</h3>
+                    <p>Full stack MERN application for tracking jobs with authentication and authorization.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">React</span>
+                        <span class="project-tag">Node.js</span>
+                        <span class="project-tag">MongoDB</span>
+                    </div>
+                    <br><br>
+                    <div class="project-links">
+                        <a href="https://github.com/Sameer7163/Job_tracker.git" target="_blank" class="code-link" style="color: var(--primary)">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-robot fa-3x"></i>
+                </div>
+                <div class="project-info">
+                    <h3 data-text="Deep Learning TurtleSim">Deep Learning TurtleSim</h3>
+                    <p>YOLO11-based object detection system for Mars rock detection, integrated with TurtleSim for path planning and navigation.</p>
+                    <div class="project-tags">
+                        <span class="project-tag">YOLO11</span>
+                        <span class="project-tag">Python</span> 
+                        <span class="project-tag">ROS</span>
+                    </div>
+                    <br><br>
+                    <div class="project-links">
+                        <a href="https://github.com/Sameer7163/Deep_Learning_TurtleSim.git" target="_blank" class="code-link" style="color: var(--primary)">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->   
+    <div id="contact" class="page">
+        <div class="contact-content">
+            <h2 data-text="Get In Touch">Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-paper-plane"></i>
+                    <h4 data-text="Email">Email</h4>
+                    <p>lnum89@udayton.edu</p>
+                </div>
+                <br><br>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h4 data-text="Phone">Phone</h4>
+                    <p>(326)-467-2469</p>
+                </div>
+                <br><br>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4 data-text="Location">Location</h4>
+                    <p>Cincinnati, OH (Ready to relocate)</p>
+                </div>
+            </div>
+            <br><br>
+            <form class="contact-form" action="mailto:lnum89@udayton.edu" method="POST" enctype="text/plain">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('onclick').includes(pageId)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    </script>
