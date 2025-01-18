@@ -28,9 +28,19 @@
             color: var(--light);
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 159, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 90% 50%, rgba(0, 184, 255, 0.1) 0%, transparent 20%),
-                radial-gradient(circle at 30% 80%, rgba(255, 0, 85, 0.1) 0%, transparent 20%);
+                linear-gradient(rgba(10, 10, 15, 0.85), rgba(10, 10, 15, 0.85)),
+                url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-blend-mode: normal;
+        }
+
+        /* Rest of the CSS remains exactly the same */
+        ul ul {
+            margin-left: 20px;
+            list-style-type: disc;
         }
 
         h1, h2, h3 {
@@ -46,8 +56,29 @@
             padding: 120px 10% 4rem;
             display: none;
             animation: glitchIn 0.5s ease-in-out;
+            position: relative;
         }
 
+        /* Add a subtle text shadow to improve readability */
+        p, li, .skill-item, .project-info {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Add a semi-transparent background to content sections for better contrast */
+        .home-content,
+        .experience-timeline,
+        .projects-grid,
+        .contact-content,
+        .education-timeline {
+            background: rgba(10, 10, 15, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+           
+        }
+
+        /* Rest of the CSS remains exactly the same as before */
         .page.active {
             display: block;
         }
@@ -361,6 +392,7 @@
     </style>
 </head>
 <body>
+    <!-- Rest of the HTML remains exactly the same -->
     <!-- Navigation -->
     <nav>
         <div class="logo">PORTFOLIO</div>
@@ -397,14 +429,17 @@
                     <div class="skill-list">
                         <span class="skill-item"><i class="fab fa-react"></i>React</span>
                         <span class="skill-item"><i class="fab fa-node-js"></i>Node.js</span>
-                        <span class="skill-item"><i class="fab fa-node"></i>Express</span>
                         <span class="skill-item"><i class="fab fa-react"></i>Next.js</span>
                         <span class="skill-item"><i class="fas fa-bolt"></i>FastAPI</span>
+                        <span class="skill-item"><i class="fas fa-table"></i>Pandas</span>
+                        <span class="skill-item"><i class="fas fa-fire"></i>PySpark</span>
                     </div>
                 </div>
                 <div class="skill-category">
                     <h3 data-text="Databases"><i class="fas fa-database"></i>Databases</h3>
                     <div class="skill-list">
+                        <span class="skill-item"><i class="fas fa-database"></i>Oracle</span>
+                        <span class="skill-item"><i class="fas fa-database"></i>Redshift</span>
                         <span class="skill-item"><i class="fas fa-database"></i>MongoDB</span>
                         <span class="skill-item"><i class="fas fa-database"></i>PostgreSQL</span>
                         <span class="skill-item"><i class="fas fa-database"></i>MySQL</span>
@@ -417,7 +452,16 @@
                         <span class="skill-item"><i class="fab fa-aws"></i>AWS</span>
                         <span class="skill-item"><i class="fab fa-docker"></i>Docker</span>
                         <span class="skill-item"><i class="fab fa-git"></i>Git</span>
-                        <span class="skill-item"><i class="fab fa-jenkins"></i>Jenkins</span>
+                        <span class="skill-item"><i class="fab fa-jenkins"></i>Kubernetes</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3 data-text="ETL & Data Pipeline"><i class="fas fa-exchange-alt"></i>ETL & Data Pipeline</h3>
+                    <div class="skill-list">
+                        <span class="skill-item"><i class="fas fa-stream"></i>Kafka</span>
+                        <span class="skill-item"><i class="fas fa-wind"></i>Airflow</span>
+                        <span class="skill-item"><i class="fas fa-random"></i>Informatica</span>
+                        <span class="skill-item"><i class="fas fa-tasks"></i>ControlM</span>
                     </div>
                 </div>
             </div>
@@ -468,7 +512,7 @@
             <div class="experience-item">
                 <h3 data-text="Software Engineer">Software Engineer: Data</h3>
                 <div class="company">IBM</div>
-                <div class="duration">February 2020 - June 2023</div>
+                <div class="duration">Feb 2020 - Jun 2023</div>
                 <br><br>
                 <ul>
                     <li>Developed and deployed FastAPI-based microservices and RESTful APIs for Hyundai's site systems, supporting 10,000+ concurrent users with zero downtime.</li>
@@ -484,9 +528,27 @@
             <br><br>
 
             <div class="experience-item">
+                <h3 data-text="Teaching Assistant">Teaching Assistant</h3>
+                <div class="company">University of Dayton, Department of Computer Science</div>
+                <div class="duration">Jan 2025 - Present</div>
+                <br><br>
+                <ul>
+                    <li>Teaching Assistant/Course Grader for 3 courses with 80+ students, handled grading and helped students with assignments and exams as well as conducting office hours and lab sessions.
+                        <ul>
+                            <li>CPS 475: Secure Application Development</li>
+                            <li>CPS 449: Cloud-based Intelligent Application Development</li>
+                            <li>CPS 499: Web Application Programming and Hacking</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <br><br>
+
+            <div class="experience-item">
                 <h3 data-text="Graduate Teaching Assistant">Graduate Teaching Assistant</h3>
-                <div class="company">University of Dayton</div>
-                <div class="duration">August 2024 - Present</div>
+                <div class="company">University of Dayton, Department of Mechanical and Aerospace Engineering</div>
+                <div class="duration">Aug 2024 - Present</div>
                 <br><br>
                 <ul>
                     <li>Taught MATLAB programming for 80+ Mechanical and Aerospace Engineering students</li>
@@ -525,8 +587,8 @@
                     <i class="fas fa-robot fa-3x"></i>
                 </div>
                 <div class="project-info">
-                    <h3 data-text="OpenAI Integration">OpenAI Integration</h3>
-                    <p>NextJS app with OpenAI integration for itinerary and tour planning suggestions.</p>
+                    <h3 data-text="OpenAI Integration">AI Tour Planner</h3>
+                    <p>NextJS app with OpenAI integration for custom itinerary creation and tour planning suggestions.</p>
                     <div class="project-tags">
                         <span class="project-tag">NextJS</span>
                         <span class="project-tag">OpenAI</span>
@@ -606,6 +668,12 @@
                     <i class="fas fa-map-marker-alt"></i>
                     <h4 data-text="Location">Location</h4>
                     <p>Cincinnati, OH (Ready to relocate)</p>
+                </div>
+                <br><br>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <h4 data-text="LinkedIn">LinkedIn</h4>
+                    <p><a href="https://www.linkedin.com/in/mohammad--sameer/" target="_blank" style="color: var(--primary)">Connect with me on LinkedIn</a></p>
                 </div>
             </div>
             <br><br>
